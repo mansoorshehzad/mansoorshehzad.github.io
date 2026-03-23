@@ -1,9 +1,259 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Mansoor Shehzad | CS & Applied Physics</title>
+    <meta name="description"
+        content="Mansoor Shehzad - PhD candidate in Applied Physics at Rice University. Medical computer vision, cardiac imaging, and machine learning.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <h1>Hello World! Welcome to my personal site.</h1>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">mshehzad<span class="blink">_</span></a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-item">~/about</a></li>
+                <li><a href="research.html" class="nav-item">~/research</a></li>
+                <li><a href="#education" class="nav-item">~/background</a></li>
+                <li><a href="#contact" class="nav-item">~/contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-wrapper">
+                <h1 class="hero-title">MANSOOR<br>SHEHZAD</h1>
+
+                <div class="terminal-window glass-panel">
+                    <div class="terminal-header">
+                        <div class="mac-btns">
+                            <span class="btn-red"></span>
+                            <span class="btn-yel"></span>
+                            <span class="btn-grn"></span>
+                        </div>
+                        <div class="terminal-title">bash - mshehzad@rice_univ:~</div>
+                    </div>
+                    <div class="terminal-body" id="term-body">
+                        <p><span class="prompt">mshehzad@rice_univ:~$</span> cat profile.txt</p>
+                        <p class="term-output">Ph.D. Student, Applied Physics &mdash; Rice University</p>
+                        <p class="term-output">Houston Methodist Rice Digital Health Institute</p>
+                        <p class="term-output">&nbsp;</p>
+                        <p class="term-output">Interests: Medical computer vision, machine learning,</p>
+                        <p class="term-output">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cardiovascular
+                            diagnostics, clinical AI</p>
+                        <p><span class="prompt">mshehzad@rice_univ:~$</span> <span class="typing"></span><span
+                                class="cursor">|</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-down">
+                <p>SCROLL</p>
+                <div class="line"></div>
+            </div>
+        </section>
+
+        <!-- Bento Grid Section (About & Skills) -->
+        <section id="about" class="bento-section section-reveal">
+            <div class="section-badge">01. WHO I AM</div>
+
+            <div class="bento-grid">
+                <!-- Large primary box -->
+                <div class="bento-box bento-large glass-panel">
+                    <h2>About</h2>
+                    <p>
+                        I'm a PhD student in Applied Physics at Rice University, developing computer vision and
+                        machine learning methods for cardiovascular imaging. My work at
+                        <a href="https://www.hmrdhi.org/"
+                            style="color: var(--accent); border-bottom: 1px solid var(--accent);">Houston Methodist Rice
+                            Digital Health Institute</a>
+                        focuses on extracting diagnostic information from routine echocardiography &mdash; enabling
+                        non-invasive screening that currently requires expensive, specialized imaging like cardiac MRI.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        I work closely with cardiologists and clinical data, which means my research is shaped by
+                        what's actually useful at the point of care, not just what's technically interesting.
+                    </p>
+                </div>
+
+                <!-- Skills Box -->
+                <div class="bento-box bento-tall glass-panel">
+                    <h3>Tools</h3>
+                    <div class="tech-tags">
+                        <span class="tag python">PyTorch (Primary)</span>
+                        <span class="tag">nnU-Net</span>
+                        <span class="tag">MONAI</span>
+                        <span class="tag">SimpleITK / nibabel</span>
+                        <span class="tag">PyRadiomics</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Weights & Biases</span>
+                        <span class="tag">Docker / SLURM</span>
+                        <span class="tag">C / C++</span>
+                    </div>
+                </div>
+
+                <!-- Research Interest 1 -->
+                <div class="bento-box bento-small glass-panel highlight-box">
+                    <i class="fas fa-heartbeat box-icon"></i>
+                    <div class="box-label" style="max-width: none; text-transform: none; font-size: 0.95rem;">
+                        Echocardiographic AI & Automated Cardiac Segmentation</div>
+                </div>
+
+                <!-- Research Interest 2 -->
+                <div class="bento-box bento-small glass-panel highlight-box">
+                    <i class="fas fa-microscope box-icon"></i>
+                    <div class="box-label" style="max-width: none; text-transform: none; font-size: 0.95rem;">
+                        Non-Invasive Tissue Characterization from Clinical Imaging</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Highlights (NEW) -->
+        <section id="research-highlights" class="section-reveal">
+            <div class="section-badge">02. CURRENT RESEARCH</div>
+
+            <div class="research-highlight-grid">
+                <div class="glass-panel hover-target research-card">
+                    <div class="research-card-tag">Under Review &middot; MICCAI 2026</div>
+                    <h3>Echo-SCAR</h3>
+                    <p class="exp-desc">
+                        Can a routine echocardiogram &mdash; a test already being performed millions of times
+                        a year &mdash; detect myocardial scar without requiring an expensive cardiac MRI?
+                        We're investigating whether temporal features extracted from echo video contain enough
+                        hidden signal to screen for scar at the segment level.
+                    </p>
+                    <div class="exp-tech">
+                        <span>#echocardiography</span> <span>#feature_learning</span> <span>#nnU-Net</span>
+                        <span>#cardiac_MRI</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel hover-target research-card">
+                    <div class="research-card-tag">IEEE ISBI 2025 &middot; Poster</div>
+                    <h3>Automatic Cardiac Chamber Segmentation</h3>
+                    <p class="exp-desc">
+                        Automated segmentation of all four cardiac chambers from echocardiographic video. This work
+                        underpins the Echo-SCAR pipeline &mdash; reliable, view-specific segmentation is the foundation
+                        that makes downstream tissue characterization possible.
+                    </p>
+                    <div class="exp-tech">
+                        <span>#segmentation</span> <span>#echocardiography</span> <span>#deep_learning</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <a href="research.html" class="btn-solid">EXPLORE ALL RESEARCH &rarr;</a>
+            </div>
+        </section>
+
+        <!-- Education & Beyond the Lab -->
+        <section id="education" class="edu-section section-reveal">
+            <div class="section-badge">03. BACKGROUND</div>
+
+            <div class="split-grid">
+                <!-- Education -->
+                <div class="glass-panel p-container">
+                    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                    <ul class="clean-list">
+                        <li>
+                            <div class="list-meta">Dec 2028 (Exp)</div>
+                            <h4>Rice University</h4>
+                            <p>Ph.D. in Applied Physics</p>
+                        </li>
+                        <li>
+                            <div class="list-meta">May 2026 (Exp) </div>
+                            <h4>Rice University</h4>
+                            <p>M.S. in Applied Physics</p>
+                        </li>
+                        <li>
+                            <div class="list-meta">May 2022</div>
+                            <h4>UMBC</h4>
+                            <p>B.S. Computer Science</p>
+                        </li>
+                        <li>
+                            <div class="list-meta">May 2022</div>
+                            <h4>UMBC</h4>
+                            <p>B.S. Physics</p>
+                            <p class="sub-text">GPA 3.9/4.0 | Magna Cum Laude | &Phi;&Beta;&Kappa;</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Beyond the Lab -->
+                <div class="glass-panel p-container">
+                    <h2><i class="fas fa-globe-americas"></i> Beyond the Lab</h2>
+                    <ul class="clean-list">
+                        <li>
+                            <h4>Three countries</h4>
+                            <p>Grew up between the East Coast US, India, and Saudi Arabia. The
+                                constant moving taught me to learn fast and stay curious &mdash; habits
+                                that stuck. Currently adding Spanish to the mix.</p>
+                        </li>
+                        <li>
+                            <h4>Hobbies</h4>
+                            <p>I play guitar, DJ on the side, and am always looking for an excuse
+                                to learn something with my hands. Research is better when you have
+                                a life outside of it.</p>
+                        </li>
+                        <li>
+                            <h4>Teaching</h4>
+                            <p>I've taught Python to 150+ undergrads, mentored STEM students at Rice, and served as
+                                Outreach Chair for the Applied Physics GSA. I like explaining things almost
+                                as much as figuring them out.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section section-reveal">
+            <div class="contact-grid">
+                <h2 class="huge-text">LET'S<br>TALK.</h2>
+                <div class="contact-links glass-panel">
+                    <p class="contact-prompt">If you're working on problems in medical imaging, cardiac AI, or clinical
+                        ML &mdash; I'd like to hear about it_</p>
+                    <a href="mailto:mansoorshehzad@rice.edu" class="cmd-link">> mansoorshehzad@rice.edu</a>
+                    <a href="#" class="btn-solid mt-4">DOWNLOAD_CV.pdf</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="foot-container">
+            <p>sys.exit(0)</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>

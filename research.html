@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Research | Mansoor Shehzad</title>
+    <meta name="description"
+        content="Research by Mansoor Shehzad - Medical computer vision, cardiac imaging, echocardiographic scar detection, and THz spectroscopy.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">mshehzad<span class="blink">_</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#about" class="nav-item">~/about</a></li>
+                <li><a href="research.html" class="nav-item active">~/research</a></li>
+                <li><a href="index.html#education" class="nav-item">~/background</a></li>
+                <li><a href="index.html#contact" class="nav-item">~/contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Research Hero -->
+        <section class="research-hero">
+            <div class="section-badge">ls ~/research/</div>
+            <h1 class="research-page-title">Research</h1>
+
+            <div class="terminal-window glass-panel" style="max-width: 700px;">
+                <div class="terminal-header">
+                    <div class="mac-btns">
+                        <span class="btn-red"></span>
+                        <span class="btn-yel"></span>
+                        <span class="btn-grn"></span>
+                    </div>
+                    <div class="terminal-title">bash - mshehzad@rice_univ:~/research</div>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="prompt">mshehzad@rice_univ:~/research$</span> cat README.md</p>
+                    <p class="term-output">&nbsp;</p>
+                    <p class="term-output">Diagnostic tools should go where patients are,</p>
+                    <p class="term-output">not the other way around.</p>
+                    <p class="term-output">&nbsp;</p>
+                    <p class="term-output">My research builds ML methods that extract clinical</p>
+                    <p class="term-output">insight from imaging that is already being performed &mdash;</p>
+                    <p class="term-output">making diagnostics more accessible, scalable,</p>
+                    <p class="term-output">and useful at the point of care.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Research -->
+        <section class="section-reveal">
+            <div class="section-badge">01. ACTIVE RESEARCH</div>
+
+            <!-- Echo-SCAR -->
+            <div class="research-project glass-panel">
+                <div class="research-project-header">
+                    <div>
+                        <div class="research-card-tag">Under Review &middot; MICCAI 2026</div>
+                        <h2>Echo-SCAR: Temporal Feature Learning for Myocardial Scar Detection from Routine Echocardiography</h2>
+                    </div>
+                </div>
+
+                <div class="research-project-body">
+                    <div class="research-question">
+                        <h3>The Question</h3>
+                        <p>
+                            Myocardial scar is a critical determinant of patient prognosis, guiding decisions about
+                            revascularization, device implantation, and medical management. The gold standard for
+                            detecting it &mdash; cardiac MRI with late gadolinium enhancement &mdash; costs
+                            $1,000&ndash;$3,000 per study and is unavailable in most clinical settings.
+                        </p>
+                        <p style="margin-top: 0.8rem;">
+                            Echocardiography, on the other hand, is performed millions of times a year. It's cheap,
+                            fast, and everywhere. But it has historically been considered unable to characterize
+                            tissue at this level.
+                        </p>
+                        <p style="margin-top: 0.8rem;">
+                            <em>Can routine echocardiographic video &mdash; a test already being performed &mdash;
+                            detect myocardial scar without requiring cardiac MRI?</em>
+                        </p>
+                    </div>
+
+                    <div class="research-question">
+                        <h3>Why It Matters</h3>
+                        <p>
+                            If echo-based scar screening is feasible, it could enable opportunistic screening during
+                            routine exams &mdash; flagging high-risk patients for targeted CMR referral without any
+                            additional imaging, cost, or clinical workflow changes. A scalable diagnostic built on
+                            top of infrastructure that already exists.
+                        </p>
+                    </div>
+
+                    <p style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
+                        Paper under review. Details available upon request.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ISBI -->
+            <div class="research-project glass-panel" style="margin-top: 2rem;">
+                <div class="research-project-header">
+                    <div>
+                        <div class="research-card-tag">IEEE ISBI 2025 &middot; Poster Presentation</div>
+                        <h2>Automatic Video Segmentation of the Four Cardiac Chambers in Echocardiograms</h2>
+                    </div>
+                </div>
+
+                <div class="research-project-body">
+                    <p>
+                        Reliable segmentation is the foundation everything else is built on. This work developed
+                        automated, view-specific segmentation models for all four cardiac chambers from echocardiographic
+                        video, achieving Dice coefficients above 0.94 across views. These models form the backbone of
+                        the Echo-SCAR pipeline and enable scalable downstream analysis &mdash; from volume estimation
+                        to tissue characterization &mdash; without requiring manual clinical annotation.
+                    </p>
+                    <div class="exp-tech" style="margin-top: 1.5rem;">
+                        <span>#nnU-Net</span> <span>#video_segmentation</span> <span>#echocardiography</span>
+                        <span>#cardiac_chambers</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Past Research -->
+        <section class="section-reveal">
+            <div class="section-badge">02. PAST RESEARCH</div>
+
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1rem; line-height: 1.7;">
+                My earlier work spans bioelectronics and terahertz optics &mdash; different domains, but the same
+                core problem: building systems that measure what isn't directly visible.
+            </p>
+
+            <div class="exp-list">
+                <div class="exp-row glass-panel hover-target">
+                    <div class="exp-meta">
+                        <div class="exp-date">Dec 2022 - Jan 2024</div>
+                        <div class="exp-location">Verduzco Lab, Rice</div>
+                    </div>
+                    <div class="exp-details">
+                        <h3>Bioelectronic Interfaces</h3>
+                        <p class="exp-desc">
+                            Designed device architectures for bioelectronic interfaces and managed data-acquisition
+                            pipelines for novel biocomputing sensors.
+                        </p>
+                        <div class="exp-tech">
+                            <span>#bioelectronics</span> <span>#data_acquisition</span> <span>#sensor_design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-row glass-panel hover-target">
+                    <div class="exp-meta">
+                        <div class="exp-date">Nov 2020 - Jul 2022</div>
+                        <div class="exp-location">Hayden Lab, UMBC</div>
+                    </div>
+                    <div class="exp-details">
+                        <h3>Terahertz Imaging for Defect Detection</h3>
+                        <p class="exp-desc">
+                            Built a terahertz time-domain spectroscopy system (Army Research Lab funded) to detect
+                            microfractures in stealth-aircraft coatings. Automated the imaging pipeline in LabVIEW,
+                            improving throughput by ~1000x.
+                        </p>
+                        <div class="exp-tech">
+                            <span>#THz_spectroscopy</span> <span>#optoelectronics</span> <span>#LabVIEW</span>
+                            <span>#anomaly_detection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications & Presentations -->
+        <section class="section-reveal">
+            <div class="section-badge">03. PUBLICATIONS & PRESENTATIONS</div>
+
+            <div class="publications-list">
+                <div class="pub-item glass-panel">
+                    <div class="pub-status status-review">Under Review</div>
+                    <h4>Echo-SCAR: Temporal Feature Learning for Myocardial Scar Detection from Routine Echocardiography</h4>
+                    <p class="pub-venue">Submitted to MICCAI 2026</p>
+                    <p class="pub-authors">M. Shehzad et al.</p>
+                </div>
+
+                <div class="pub-item glass-panel">
+                    <div class="pub-status status-published">Presented</div>
+                    <h4>Automatic Video Segmentation of the Four Cardiac Chambers in Echocardiograms</h4>
+                    <p class="pub-venue">IEEE ISBI 2025 &middot; Poster & 1-Page Abstract</p>
+                    <p class="pub-authors">M. Shehzad et al.</p>
+                </div>
+
+                <div class="pub-item glass-panel">
+                    <div class="pub-status status-published">Poster</div>
+                    <h4>Creating an Asynchronous Optical Sampling Based THz Imaging System to Detect Defects on a Metal Armor</h4>
+                    <p class="pub-venue">UMBC Undergraduate Research Symposium, April 2022</p>
+                    <p class="pub-authors">M. Shehzad</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="foot-container">
+            <p>sys.exit(0)</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
