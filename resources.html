@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Resources | Mansoor Shehzad</title>
+    <meta name="description"
+        content="Curated ML/AI learning resources — MOOCs, courses, and seminal papers with video explanations.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main site CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* Resources page specific styles */
+        .resources-hero {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: calc(var(--nav-height) + 40px);
+        }
+
+        .resources-page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .resources-intro {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        /* MOOC Cards */
+        .mooc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .mooc-card {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .mooc-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .mooc-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .mooc-platform {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Paper Cards */
+        .era {
+            margin-bottom: 3rem;
+        }
+
+        .era-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 1.2rem;
+        }
+
+        .era-title {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .era-line {
+            flex: 1;
+            height: 1px;
+            background: var(--sys-border);
+        }
+
+        .paper-card {
+            display: grid;
+            grid-template-columns: 40px 1fr auto;
+            gap: 1rem;
+            align-items: start;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 0.6rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .paper-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .paper-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--sys-border-glow);
+            padding-top: 3px;
+            text-align: right;
+            transition: color 0.15s;
+        }
+
+        .paper-card:hover .paper-num {
+            color: var(--accent);
+        }
+
+        .paper-title {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+        }
+
+        .paper-year {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: var(--sys-bg);
+            border: 1px solid var(--sys-border);
+            padding: 1px 5px;
+            border-radius: 2px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .paper-channel {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .channel-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .paper-note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .paper-tags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .ptag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            padding: 2px 7px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+
+        .ptag-cv { background: rgba(143, 204, 95, 0.12); color: #8fcc5f; }
+        .ptag-nlp { background: rgba(95, 184, 204, 0.12); color: #5fb8cc; }
+        .ptag-gen { background: rgba(204, 95, 158, 0.12); color: #cc5f9e; }
+        .ptag-rl { background: rgba(204, 122, 95, 0.12); color: #cc7a5f; }
+        .ptag-arch { background: rgba(204, 176, 95, 0.12); color: #ccb05f; }
+        .ptag-graph { background: rgba(95, 204, 184, 0.12); color: #5fccb8; }
+        .ptag-bio { background: rgba(122, 204, 95, 0.12); color: #7acc5f; }
+
+        .paper-arrow {
+            color: var(--sys-border-glow);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            padding-top: 2px;
+            transition: color 0.15s, transform 0.15s;
+        }
+
+        .paper-card:hover .paper-arrow {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        /* Filter bar */
+        .filters {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-right: 4px;
+        }
+
+        .filter-btn {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border: 1px solid var(--sys-border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.15s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Channels */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .channel-card {
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .channel-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .channel-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .hidden { display: none !important; }
+
+        @media screen and (max-width: 768px) {
+            .paper-card {
+                grid-template-columns: 30px 1fr;
+            }
+            .paper-arrow { display: none; }
+            .mooc-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">mshehzad<span class="blink">_</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#about" class="nav-item">~/about</a></li>
+                <li><a href="research.html" class="nav-item">~/research</a></li>
+                <li><a href="index.html#education" class="nav-item">~/background</a></li>
+                <li><a href="resources.html" class="nav-item active">~/resources</a></li>
+                <li><a href="index.html#contact" class="nav-item">~/contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <section class="resources-hero">
+            <div class="section-badge">cat ~/resources/README.md</div>
+            <h1 class="resources-page-title">Resources</h1>
+            <p class="resources-intro">
+                A collection of courses, papers, and video explanations that I found useful while learning
+                machine learning and AI. Organized from foundational to current, for anyone starting the same journey.
+            </p>
+        </section>
+
+        <!-- MOOCs & Courses -->
+        <section class="section-reveal">
+            <div class="section-badge">01. COURSES & MOOCs</div>
+
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.7;">
+                Before diving into papers, build strong foundations. These courses cover the math, programming,
+                and core ML concepts you'll need. All free or auditable.
+            </p>
+
+            <div class="mooc-grid">
+                <a class="mooc-card glass-panel hover-target" href="https://cs50.harvard.edu/x/" target="_blank">
+                    <div class="mooc-platform">Harvard / edX</div>
+                    <h4>CS50x: Introduction to Computer Science</h4>
+                    <p>The best starting point if you're new to CS. Covers C, Python, data structures, algorithms, and web. David Malan's lectures are unmatched.</p>
+                </a>
+
+                <a class="mooc-card glass-panel hover-target" href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/" target="_blank">
+                    <div class="mooc-platform">MIT OpenCourseWare</div>
+                    <h4>6.006: Introduction to Algorithms</h4>
+                    <p>Rigorous algorithms course. Essential for understanding computational complexity and the data structures underlying ML systems.</p>
+                </a>
+
+                <a class="mooc-card glass-panel hover-target" href="https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/" target="_blank">
+                    <div class="mooc-platform">MIT OpenCourseWare</div>
+                    <h4>18.06: Linear Algebra (Gilbert Strang)</h4>
+                    <p>The math behind everything in ML. Eigenvalues, SVD, projections, vector spaces. Strang makes it intuitive.</p>
+                </a>
+
+                <a class="mooc-card glass-panel hover-target" href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank">
+                    <div class="mooc-platform">Coursera / Stanford</div>
+                    <h4>Machine Learning Specialization (Andrew Ng)</h4>
+                    <p>The updated version of the course that introduced millions to ML. Covers regression, neural nets, decision trees, recommender systems.</p>
+                </a>
+
+                <a class="mooc-card glass-panel hover-target" href="https://www.coursera.org/specializations/deep-learning" target="_blank">
+                    <div class="mooc-platform">Coursera / deeplearning.ai</div>
+                    <h4>Deep Learning Specialization (Andrew Ng)</h4>
+                    <p>Five courses covering neural networks, CNNs, RNNs, sequence models, and practical deep learning. The natural follow-up to the ML Specialization.</p>
+                </a>
+
+                <a class="mooc-card glass-panel hover-target" href="https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/" target="_blank">
+                    <div class="mooc-platform">MIT OpenCourseWare</div>
+                    <h4>6.036: Introduction to Machine Learning</h4>
+                    <p>MIT's undergrad ML course. More mathematical rigor than Ng's courses. Good for building theory alongside intuition.</p>
+                </a>
+
+                <a class="mooc-card glass-panel hover-target" href="https://www.edx.org/learn/probability/harvard-university-introduction-to-probability" target="_blank">
+                    <div class="mooc-platform">edX / Harvard</div>
+                    <h4>Stat 110: Introduction to Probability</h4>
+                    <p>Joe Blitzstein's probability course. Essential for understanding Bayesian methods, generative models, and statistical ML.</p>
+                </a>
+
+                <a class="mooc-card glass-panel hover-target" href="https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv" target="_blank">
+                    <div class="mooc-platform">Stanford / YouTube</div>
+                    <h4>CS231n: CNNs for Visual Recognition</h4>
+                    <p>Andrej Karpathy and Fei-Fei Li's legendary computer vision course. If you're doing anything with images, start here.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Seminal Papers -->
+        <section class="section-reveal">
+            <div class="section-badge">02. SEMINAL ML/AI PAPERS</div>
+
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.7;">
+                33 papers that shaped the field, each paired with the best video explanation I could find.
+                Ordered chronologically within eras &mdash; start from the top if you're building up, or filter by topic.
+            </p>
+
+            <!-- Filters -->
+            <div class="filters">
+                <span class="filter-label">Filter:</span>
+                <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
+                <button class="filter-btn" onclick="filterCards('arch', this)">Architecture</button>
+                <button class="filter-btn" onclick="filterCards('cv', this)">Vision</button>
+                <button class="filter-btn" onclick="filterCards('nlp', this)">NLP</button>
+                <button class="filter-btn" onclick="filterCards('gen', this)">Generative</button>
+                <button class="filter-btn" onclick="filterCards('rl', this)">RL</button>
+                <button class="filter-btn" onclick="filterCards('graph', this)">Graphs</button>
+                <button class="filter-btn" onclick="filterCards('bio', this)">Bio / Science</button>
+            </div>
+
+            <!-- ERA 1: Foundations -->
+            <div class="era">
+                <div class="era-header">
+                    <span class="era-title">Foundations &middot; 1986 &ndash; 2006</span>
+                    <div class="era-line"></div>
+                </div>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank" data-tags="arch">
+                    <div class="paper-num">01</div>
+                    <div>
+                        <div class="paper-title">Backpropagation <span class="paper-year">1986</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Andrej Karpathy &mdash; The spelled-out intro to neural networks & backprop</div>
+                        <div class="paper-note">Rumelhart, Hinton & Williams. The algorithm that made training deep nets tractable. Karpathy builds it from scratch in numpy.</div>
+                        <div class="paper-tags"><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=d14TUNcbn1k" target="_blank" data-tags="arch nlp">
+                    <div class="paper-num">02</div>
+                    <div>
+                        <div class="paper-title">Long Short-Term Memory (LSTM) <span class="paper-year">1997</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; LSTM paper explained</div>
+                        <div class="paper-note">Hochreiter & Schmidhuber. Solved the vanishing gradient problem in RNNs with gating mechanisms. Dominated sequence modeling for 20 years.</div>
+                        <div class="paper-tags"><span class="ptag ptag-arch">ARCH</span><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+            </div>
+
+            <!-- ERA 2: Deep Learning Revolution -->
+            <div class="era">
+                <div class="era-header">
+                    <span class="era-title">Deep Learning Revolution &middot; 2012 &ndash; 2016</span>
+                    <div class="era-line"></div>
+                </div>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=UZDiGooFs54" target="_blank" data-tags="cv arch">
+                    <div class="paper-num">03</div>
+                    <div>
+                        <div class="paper-title">AlexNet &mdash; ImageNet Classification with Deep CNNs <span class="paper-year">2012</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; Classic paper series</div>
+                        <div class="paper-note">Krizhevsky, Sutskever & Hinton. The paper that reignited deep learning. GPU-trained deep CNNs dominating ImageNet by a wide margin.</div>
+                        <div class="paper-tags"><span class="ptag ptag-cv">CV</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=FltbAI3zdfw" target="_blank" data-tags="nlp arch">
+                    <div class="paper-num">04</div>
+                    <div>
+                        <div class="paper-title">Word2Vec &mdash; Distributed Representations of Words <span class="paper-year">2013</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Rasa &mdash; Word2Vec / embedding concepts explained</div>
+                        <div class="paper-note">Mikolov et al. Showed that shallow neural nets on next-word prediction encode rich semantic structure (king &minus; man + woman &asymp; queen). The origin of all modern embeddings.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=XzKMJJXFngs" target="_blank" data-tags="gen">
+                    <div class="paper-num">05</div>
+                    <div>
+                        <div class="paper-title">Generative Adversarial Networks (GANs) <span class="paper-year">2014</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; GAN paper explained</div>
+                        <div class="paper-note">Goodfellow et al. Minimax game between generator and discriminator. Opened the entire field of deep generative modeling.</div>
+                        <div class="paper-tags"><span class="ptag ptag-gen">GEN</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=NlpS-DhayQA" target="_blank" data-tags="nlp">
+                    <div class="paper-num">06</div>
+                    <div>
+                        <div class="paper-title">Neural Machine Translation with Attention (Bahdanau) <span class="paper-year">2014</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; Bahdanau attention explained</div>
+                        <div class="paper-note">Bahdanau, Cho & Bengio. The paper that introduced attention &mdash; soft alignment for seq2seq translation. The ancestor of transformers.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=ORrStCArmP4" target="_blank" data-tags="cv arch">
+                    <div class="paper-num">07</div>
+                    <div>
+                        <div class="paper-title">ResNet &mdash; Deep Residual Learning <span class="paper-year">2015</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; ResNet paper explained</div>
+                        <div class="paper-note">He et al. Skip connections that let gradients flow across 100+ layers. Still the backbone of most vision models.</div>
+                        <div class="paper-tags"><span class="ptag ptag-cv">CV</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=ArfMgAohXK4" target="_blank" data-tags="rl">
+                    <div class="paper-num">08</div>
+                    <div>
+                        <div class="paper-title">Playing Atari with Deep RL (DQN) <span class="paper-year">2015</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; DQN paper explained</div>
+                        <div class="paper-note">Mnih et al. (DeepMind). Q-learning + CNNs + experience replay. First proof that RL can learn superhuman policies from raw pixels.</div>
+                        <div class="paper-tags"><span class="ptag ptag-rl">RL</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+            </div>
+
+            <!-- ERA 3: Transformer Era -->
+            <div class="era">
+                <div class="era-header">
+                    <span class="era-title">Transformer Era &middot; 2017 &ndash; 2020</span>
+                    <div class="era-line"></div>
+                </div>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank" data-tags="nlp arch">
+                    <div class="paper-num">09</div>
+                    <div>
+                        <div class="paper-title">Attention Is All You Need (Transformer) <span class="paper-year">2017</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; Attention Is All You Need explained</div>
+                        <div class="paper-note">Vaswani et al. Replaced recurrence with multi-head self-attention. The architectural shift behind every modern LLM.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" data-tags="nlp arch">
+                    <div class="paper-num">10</div>
+                    <div>
+                        <div class="paper-title">Let's Build GPT from Scratch <span class="paper-year">2017/2020</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Andrej Karpathy &mdash; GPT implementation walkthrough (~2hr)</div>
+                        <div class="paper-note">Builds GPT line-by-line in PyTorch. The best existing explanation of autoregressive transformers in practice.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=-9evrZnBorM" target="_blank" data-tags="nlp">
+                    <div class="paper-num">11</div>
+                    <div>
+                        <div class="paper-title">BERT: Pre-training of Deep Bidirectional Transformers <span class="paper-year">2018</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; BERT paper explained</div>
+                        <div class="paper-note">Devlin et al. Masked language modeling + bidirectional context. Established the pretrain-then-finetune paradigm in NLP.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=SzS-Q5sYsrA" target="_blank" data-tags="nlp">
+                    <div class="paper-num">12</div>
+                    <div>
+                        <div class="paper-title">GPT-3: Language Models are Few-Shot Learners <span class="paper-year">2020</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; GPT-3 paper explained</div>
+                        <div class="paper-note">Brown et al. 175B parameters showing emergent few-shot capabilities from scale alone. Triggered the LLM race.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+            </div>
+
+            <!-- ERA 4: Vision + Generative Frontier -->
+            <div class="era">
+                <div class="era-header">
+                    <span class="era-title">Vision + Generative Frontier &middot; 2020 &ndash; 2022</span>
+                    <div class="era-line"></div>
+                </div>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=TrdevFK_am4" target="_blank" data-tags="cv arch">
+                    <div class="paper-num">13</div>
+                    <div>
+                        <div class="paper-title">ViT &mdash; An Image is Worth 16x16 Words <span class="paper-year">2020</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; ViT paper explained</div>
+                        <div class="paper-note">Dosovitskiy et al. Transformer self-attention on image patches with no convolutions. Vision and language sharing the same architecture.</div>
+                        <div class="paper-tags"><span class="ptag ptag-cv">CV</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=W-O7AZNzbzQ" target="_blank" data-tags="gen">
+                    <div class="paper-num">14</div>
+                    <div>
+                        <div class="paper-title">Denoising Diffusion Probabilistic Models (DDPM) <span class="paper-year">2020/2021</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; DDPM & Diffusion Models Beat GANs</div>
+                        <div class="paper-note">Ho et al. Iterative denoising framework that outperformed GANs. Foundation of Stable Diffusion, DALL-E 3, and Sora.</div>
+                        <div class="paper-tags"><span class="ptag ptag-gen">GEN</span><span class="ptag ptag-arch">ARCH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=jCFVL_7Jtfs" target="_blank" data-tags="cv nlp gen">
+                    <div class="paper-num">15</div>
+                    <div>
+                        <div class="paper-title">CLIP &mdash; Learning Transferable Visual Models from Language <span class="paper-year">2021</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; CLIP paper explained</div>
+                        <div class="paper-note">Radford et al. Contrastive pretraining on 400M image-text pairs. Zero-shot classification. Backbone behind DALL-E 2 and Stable Diffusion.</div>
+                        <div class="paper-tags"><span class="ptag ptag-cv">CV</span><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-gen">GEN</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=APki8LmdJwY" target="_blank" data-tags="cv gen">
+                    <div class="paper-num">16</div>
+                    <div>
+                        <div class="paper-title">DINO &mdash; Self-Supervised Vision Transformers <span class="paper-year">2021</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; DINO paper explained</div>
+                        <div class="paper-note">Caron et al. Student-teacher self-distillation without labels. Attention maps localize objects with zero supervision. De facto pretraining for vision encoders.</div>
+                        <div class="paper-tags"><span class="ptag ptag-cv">CV</span><span class="ptag ptag-gen">GEN</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=VPRSBzXzavo" target="_blank" data-tags="nlp rl">
+                    <div class="paper-num">17</div>
+                    <div>
+                        <div class="paper-title">InstructGPT &mdash; Training LMs to Follow Instructions with RLHF <span class="paper-year">2022</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; InstructGPT / RLHF explained</div>
+                        <div class="paper-note">Ouyang et al. SFT + reward model + PPO. The recipe that turned GPT-3 into ChatGPT.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-rl">RL</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+            </div>
+
+            <!-- ERA 5: Scaling + Efficiency + Reasoning -->
+            <div class="era">
+                <div class="era-header">
+                    <span class="era-title">Scaling &middot; Efficiency &middot; Reasoning &middot; 2022 &ndash; 2025</span>
+                    <div class="era-line"></div>
+                </div>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=TCH_1BHY58I" target="_blank" data-tags="arch nlp">
+                    <div class="paper-num">18</div>
+                    <div>
+                        <div class="paper-title">Chinchilla &mdash; Compute-Optimal LLM Training <span class="paper-year">2022</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; Chinchilla scaling laws explained</div>
+                        <div class="paper-note">Hoffmann et al. Showed existing LLMs were undertrained. The 20 tokens/parameter rule reshaped how every lab trains models.</div>
+                        <div class="paper-tags"><span class="ptag ptag-arch">ARCH</span><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=gWlI5vezyrE" target="_blank" data-tags="arch nlp">
+                    <div class="paper-num">19</div>
+                    <div>
+                        <div class="paper-title">FlashAttention &mdash; Fast and Memory-Efficient Attention <span class="paper-year">2022</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; FlashAttention explained</div>
+                        <div class="paper-note">Dao et al. IO-aware attention fusing matmul + softmax into a single CUDA kernel. Now baked into PyTorch and every modern training stack.</div>
+                        <div class="paper-tags"><span class="ptag ptag-arch">ARCH</span><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=dA-NhCtrrVE" target="_blank" data-tags="arch nlp">
+                    <div class="paper-num">20</div>
+                    <div>
+                        <div class="paper-title">LoRA &mdash; Low-Rank Adaptation of LLMs <span class="paper-year">2022</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Umar Jamil &mdash; LoRA paper explained</div>
+                        <div class="paper-note">Hu et al. Freeze weights, inject trainable rank-r matrices. 10,000x fewer trainable params. The dominant fine-tuning paradigm.</div>
+                        <div class="paper-tags"><span class="ptag ptag-arch">ARCH</span><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=s94OHmMhqBk" target="_blank" data-tags="nlp">
+                    <div class="paper-num">21</div>
+                    <div>
+                        <div class="paper-title">Chain-of-Thought Prompting Elicits Reasoning <span class="paper-year">2022</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; CoT paper explained</div>
+                        <div class="paper-note">Wei et al. Few-shot examples with reasoning steps dramatically improve math and logic tasks. The seed behind o1 and all reasoning models.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=T4ynCCFdGbY" target="_blank" data-tags="nlp">
+                    <div class="paper-num">22</div>
+                    <div>
+                        <div class="paper-title">LLaMA &mdash; Open and Efficient Foundation LMs <span class="paper-year">2023</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; LLaMA paper explained</div>
+                        <div class="paper-note">Touvron et al. 13B model outperforms GPT-3 175B. Spawned the entire open-source LLM ecosystem.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=iCi-uiTopEA" target="_blank" data-tags="cv gen">
+                    <div class="paper-num">23</div>
+                    <div>
+                        <div class="paper-title">Segment Anything Model (SAM) <span class="paper-year">2023</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; SAM paper explained</div>
+                        <div class="paper-note">Kirillov et al. Foundation model for promptable image segmentation. Generalizes to any object with zero fine-tuning.</div>
+                        <div class="paper-tags"><span class="ptag ptag-cv">CV</span><span class="ptag ptag-gen">GEN</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=bZQun8Y4L2A" target="_blank" data-tags="arch nlp">
+                    <div class="paper-num">24</div>
+                    <div>
+                        <div class="paper-title">Mamba &mdash; Linear-Time Sequence Modeling with Selective SSMs <span class="paper-year">2023</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; Mamba paper explained</div>
+                        <div class="paper-note">Gu & Dao. State space model scaling linearly with sequence length. The most serious challenger to transformers for long sequences.</div>
+                        <div class="paper-tags"><span class="ptag ptag-arch">ARCH</span><span class="ptag ptag-nlp">NLP</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=fXaJMuFToRQ" target="_blank" data-tags="nlp rl">
+                    <div class="paper-num">25</div>
+                    <div>
+                        <div class="paper-title">Direct Preference Optimization (DPO) <span class="paper-year">2023</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; DPO paper explained</div>
+                        <div class="paper-note">Rafailov et al. Collapses RLHF into a single supervised loss on preference pairs. Widely adopted by Llama 2, Mistral, and others.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-rl">RL</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=0VLAoVGf_74" target="_blank" data-tags="nlp rl">
+                    <div class="paper-num">26</div>
+                    <div>
+                        <div class="paper-title">DeepSeek-R1 &mdash; Reasoning via Reinforcement Learning <span class="paper-year">2025</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; DeepSeek-R1 explained</div>
+                        <div class="paper-note">Pure RL from a base LLM produces emergent chain-of-thought reasoning. Opened the test-time compute scaling era.</div>
+                        <div class="paper-tags"><span class="ptag ptag-nlp">NLP</span><span class="ptag ptag-rl">RL</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+            </div>
+
+            <!-- ERA: Adjacent Fields -->
+            <div class="era">
+                <div class="era-header">
+                    <span class="era-title">Adjacent Fields &middot; Graphs &middot; RL &middot; Science AI &middot; 2015 &ndash; 2021</span>
+                    <div class="era-line"></div>
+                </div>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=VyIOfIglrUM" target="_blank" data-tags="graph">
+                    <div class="paper-num">27</div>
+                    <div>
+                        <div class="paper-title">GCN &mdash; Graph Convolutional Networks <span class="paper-year">2017</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Aleksa Gordi&#263; &mdash; GCN paper explained</div>
+                        <div class="paper-note">Kipf & Welling. The foundational GNN paper. Semi-supervised node classification with spectral graph convolutions.</div>
+                        <div class="paper-tags"><span class="ptag ptag-graph">GRAPH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=uFLeKkXWq2c" target="_blank" data-tags="graph">
+                    <div class="paper-num">28</div>
+                    <div>
+                        <div class="paper-title">GAT &mdash; Graph Attention Networks <span class="paper-year">2018</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Aleksa Gordi&#263; &mdash; GAT paper explained</div>
+                        <div class="paper-note">Veli&#269;kovi&#263; et al. Learned attention weights on neighbor aggregation. Self-attention applied to graph-structured data.</div>
+                        <div class="paper-tags"><span class="ptag ptag-graph">GRAPH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=vinQCnizqDA" target="_blank" data-tags="graph">
+                    <div class="paper-num">29</div>
+                    <div>
+                        <div class="paper-title">GraphSAGE &mdash; Inductive Representation Learning on Graphs <span class="paper-year">2017</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Aleksa Gordi&#263; &mdash; GraphSAGE explained</div>
+                        <div class="paper-note">Hamilton et al. Scalable, inductive GNNs. Sample neighborhoods, aggregate with learned functions. Foundation for production GNN systems.</div>
+                        <div class="paper-tags"><span class="ptag ptag-graph">GRAPH</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=5P7I-xPq8u8" target="_blank" data-tags="rl">
+                    <div class="paper-num">30</div>
+                    <div>
+                        <div class="paper-title">PPO &mdash; Proximal Policy Optimization <span class="paper-year">2017</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Arxiv Insights &mdash; PPO explained</div>
+                        <div class="paper-note">Schulman et al. Clipped surrogate objective for stable policy updates. OpenAI's default RL algorithm. Underlies RLHF / ChatGPT fine-tuning.</div>
+                        <div class="paper-tags"><span class="ptag ptag-rl">RL</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=ioidsRlf79o" target="_blank" data-tags="rl">
+                    <div class="paper-num">31</div>
+                    <div>
+                        <div class="paper-title">AlphaGo Zero / AlphaZero <span class="paper-year">2017&ndash;2018</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Two Minute Papers &mdash; AlphaZero explained</div>
+                        <div class="paper-note">Silver et al. (DeepMind). Zero human knowledge, pure self-play with MCTS + deep RL. Superhuman at chess and Go within hours.</div>
+                        <div class="paper-tags"><span class="ptag ptag-rl">RL</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=9z1g5JiGzD4" target="_blank" data-tags="rl">
+                    <div class="paper-num">32</div>
+                    <div>
+                        <div class="paper-title">SAC &mdash; Soft Actor-Critic <span class="paper-year">2018</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Arxiv Insights &mdash; SAC explained</div>
+                        <div class="paper-note">Haarnoja et al. Entropy-regularized RL for continuous control. Dominant off-policy algorithm for robotics.</div>
+                        <div class="paper-tags"><span class="ptag ptag-rl">RL</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+
+                <a class="paper-card glass-panel hover-target" href="https://www.youtube.com/watch?v=nGqislIsV5c" target="_blank" data-tags="bio cv">
+                    <div class="paper-num">33</div>
+                    <div>
+                        <div class="paper-title">AlphaFold 2 &mdash; Protein Structure Prediction <span class="paper-year">2021</span></div>
+                        <div class="paper-channel"><span class="channel-dot"></span>Yannic Kilcher &mdash; AlphaFold 2 explained</div>
+                        <div class="paper-note">Jumper et al. (DeepMind). Solved the 50-year protein folding problem. 2024 Nobel Prize in Chemistry.</div>
+                        <div class="paper-tags"><span class="ptag ptag-bio">BIO</span><span class="ptag ptag-cv">CV</span></div>
+                    </div>
+                    <div class="paper-arrow">&rarr;</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Recommended Channels -->
+        <section class="section-reveal" style="padding-bottom: 60px;">
+            <div class="section-badge">03. CHANNELS I LEARN FROM</div>
+
+            <div class="channel-grid">
+                <a class="channel-card glass-panel hover-target" href="https://www.youtube.com/c/yannickilcher" target="_blank">
+                    <div class="channel-name">Yannic Kilcher</div>
+                    <div class="channel-desc">Reads papers start-to-finish, covers math honestly. Best for foundational paper understanding.</div>
+                </a>
+                <a class="channel-card glass-panel hover-target" href="https://www.youtube.com/@AndrejKarpathy" target="_blank">
+                    <div class="channel-name">Andrej Karpathy</div>
+                    <div class="channel-desc">Implementation-first walkthroughs. Builds from scratch. Essential for hands-on GPT and backprop understanding.</div>
+                </a>
+                <a class="channel-card glass-panel hover-target" href="https://www.youtube.com/@3blue1brown" target="_blank">
+                    <div class="channel-name">3Blue1Brown</div>
+                    <div class="channel-desc">Visual intuition for neural networks and transformers. Watch before diving into papers if you need geometric intuition.</div>
+                </a>
+                <a class="channel-card glass-panel hover-target" href="https://www.youtube.com/@umarjamilai" target="_blank">
+                    <div class="channel-name">Umar Jamil</div>
+                    <div class="channel-desc">Deep implementation walkthroughs for LoRA, Mamba, transformers. Best for 2022+ efficiency papers.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="foot-container">
+            <p>sys.exit(0)</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        function filterCards(tag, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.paper-card').forEach(card => {
+                if (tag === 'all') {
+                    card.classList.remove('hidden');
+                } else {
+                    const tags = card.getAttribute('data-tags') || '';
+                    card.classList.toggle('hidden', !tags.includes(tag));
+                }
+            });
+
+            let i = 1;
+            document.querySelectorAll('.paper-card:not(.hidden) .paper-num').forEach(el => {
+                el.textContent = String(i++).padStart(2, '0');
+            });
+        }
+    </script>
+</body>
+
+</html>
